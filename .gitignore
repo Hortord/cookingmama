@@ -39,15 +39,15 @@ build-iPhoneSimulator/
 # vendor/Pods/
 
 ## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
-/doc/
-/rdoc/
+/backend/.yardoc/
+/backend/_yardoc/
+/backend/doc/
+/backend/rdoc/
 
 ## Environment normalization:
-/.bundle/
-/vendor/bundle
-/lib/bundler/man/
+/backend/.bundle/
+/backend/vendor/bundle
+/backend/lib/bundler/man/
 
 # for a library or gem, you might want to ignore these files since the code is
 # intended to run in multiple environments; otherwise, check them in:
@@ -60,3 +60,6 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+/backend/log
+/backend/tmp
+/backend/vendor/bundle
