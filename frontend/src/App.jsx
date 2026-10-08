@@ -1,44 +1,37 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import HomePage from './pages/HomePage'
+import RecipePage from './pages/RecipePage'
+import useRecipes from './hooks/useRecipes'
 
 function App() {
-  const [health, setHealth] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const {
+    recipes,
+    selectedRecipe,
+    loading,
+    error,
+    detailLoading,
+    search,
+    setSearch,
+    openRecipe,
+    goBackToList,
+    handleSearchSubmit,
+  } = useRecipes()
 
-  useEffect(() => {
-    fetch('/api/health')
-      .then((response) => response.json())
-      .then((data) => {
-        setHealth(data)
-        setLoading(false)
-      })
-      .catch(() => {
-        setHealth({ status: 'error', message: 'Backend unreachable' })
-        setLoading(false)
-      })
-  }, [])
+  if (selectedRecipe) {
+    return <RecipePage recipe={selectedRecipe} loading={detailLoading} onBack={goBackToList} />
+  }
 
   return (
-    <main className="app-shell">
-      <section className="card">
-        <p className="eyebrow">CookingMama</p>
-        <h1>Projet configuré</h1>
-        <p className="subtitle">
-          Rails en backend, React en frontend, PostgreSQL dans Docker.
-        </p>
-
-        {loading ? (
-          <p className="status">Connexion au backend…</p>
-        ) : (
-          <div className="status-box">
-            <span className={`pill ${health?.status === 'ok' ? 'success' : 'error'}`}>
-              {health?.status ?? 'unknown'}
-            </span>
-            <pre>{JSON.stringify(health, null, 2)}</pre>
-          </div>
-        )}
-      </section>
-    </main>
+    <HomePage
+      recipes={recipes}
+      loading={loading}
+      error={error}
+      search={search}
+      onSearchChange={setSearch}
+      onSubmit={handleSearchSubmit}
+      onReset={goBackToList}
+      onOpen={openRecipe}
+    />
   )
 }
 
