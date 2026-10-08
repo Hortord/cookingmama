@@ -5,9 +5,8 @@ module Api
 
       # GET /api/v1/recipes
       def index
-        filter = (params.dig(:filter, :ingredients) || []).join(' ')
-
-        @recipes = filter.empty? ? Recipe.all.order(:name) : Recipe.search_by_text(filter)
+        query = params[:q].presence
+        @recipes = query.nil? ? Recipe.order(id: :desc) : Recipe.search_by_text(query).order(:name)
 
         render json: @recipes
       end

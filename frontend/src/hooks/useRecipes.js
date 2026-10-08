@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getIngredients } from '../utils/recipes'
 
 function useRecipes() {
   const [recipes, setRecipes] = useState([])
@@ -87,22 +86,8 @@ function useRecipes() {
     setSubmittedSearch(search)
   }
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    const query = submittedSearch.trim().toLowerCase()
-
-    if (!query) {
-      return true
-    }
-
-    const searchableText = [recipe.name, recipe.category, ...getIngredients(recipe)]
-      .join(' ')
-      .toLowerCase()
-
-    return searchableText.includes(query)
-  })
-
   return {
-    recipes: filteredRecipes,
+    recipes,
     selectedRecipe,
     loading,
     error,
