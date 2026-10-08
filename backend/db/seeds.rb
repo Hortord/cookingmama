@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+20.times do
+  Recipe.create(name: Faker::Food.dish, preparation_time: rand(10..60),
+  cooking_time: rand(10..120), category: Faker::Food.ethnic_category,
+    ingredients: Array.new(Faker::Number.within(range: 1..15)) do
+        Faker::Food.ingredient
+    end)
+end

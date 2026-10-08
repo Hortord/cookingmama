@@ -94,6 +94,8 @@ GEM
     drb (2.2.3)
     erb (6.0.7)
     erubi (1.13.1)
+    faker (3.8.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.4.0)
       activesupport (>= 6.1)
     i18n (1.15.2)
@@ -138,6 +140,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.6.3-x86_64-linux)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
@@ -251,7 +256,9 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  faker (~> 3.2)
   pg (~> 1.1)
+  pg_search (~> 2.3)
   puma (>= 5.0)
   rails (~> 7.2.0)
   rubocop-rails-omakase
