@@ -15,10 +15,21 @@ function App() {
     openRecipe,
     goBackToList,
     handleSearchSubmit,
+    handleSearchSuggestion,
   } = useRecipes()
 
   if (selectedRecipe) {
-    return <RecipePage recipe={selectedRecipe} loading={detailLoading} onBack={goBackToList} />
+    return (
+      <RecipePage
+        recipe={selectedRecipe}
+        loading={detailLoading}
+        search={search}
+        onSearchChange={setSearch}
+        onSubmit={handleSearchSubmit}
+        onSuggestionSelect={handleSearchSuggestion}
+        onReset={goBackToList}
+      />
+    )
   }
 
   return (
@@ -29,6 +40,7 @@ function App() {
       search={search}
       onSearchChange={setSearch}
       onSubmit={handleSearchSubmit}
+      onSuggestionSelect={handleSearchSuggestion}
       onReset={goBackToList}
       onOpen={openRecipe}
     />

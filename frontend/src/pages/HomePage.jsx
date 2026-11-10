@@ -1,13 +1,24 @@
 import RecipeList from '../components/RecipeList'
 import SearchHeader from '../components/SearchHeader'
 
-function HomePage({ recipes, loading, error, search, onSearchChange, onSubmit, onReset, onOpen }) {
+function HomePage({
+  recipes,
+  loading,
+  error,
+  search,
+  onSearchChange,
+  onSubmit,
+  onSuggestionSelect,
+  onReset,
+  onOpen,
+}) {
   return (
     <main className="home-page">
       <SearchHeader
         search={search}
         onSearchChange={onSearchChange}
         onSubmit={onSubmit}
+        onSuggestionSelect={onSuggestionSelect}
         onReset={onReset}
       />
 

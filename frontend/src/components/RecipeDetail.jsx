@@ -1,17 +1,27 @@
 import { FALLBACK_IMAGE, formatTotalTime, getIngredients } from '../utils/recipes'
+import SearchHeader from './SearchHeader'
 
-function RecipeDetail({ recipe, loading, onBack }) {
+function RecipeDetail({
+  recipe,
+  loading,
+  search,
+  onSearchChange,
+  onSubmit,
+  onSuggestionSelect,
+  onReset,
+}) {
   const ingredients = getIngredients(recipe)
 
   if (loading) {
     return (
       <main className="detail-page">
-        <header className="hero">
-          <button type="button" className="brand-button" onClick={onBack}>
-            <h1>CookingMama</h1>
-            <p className="eyebrow">Des recettes faciles à cuisiner</p>
-          </button>
-        </header>
+        <SearchHeader
+          search={search}
+          onSearchChange={onSearchChange}
+          onSubmit={onSubmit}
+          onSuggestionSelect={onSuggestionSelect}
+          onReset={onReset}
+        />
         <p className="state-message">Chargement de la recette…</p>
       </main>
     )
@@ -19,12 +29,13 @@ function RecipeDetail({ recipe, loading, onBack }) {
 
   return (
     <main className="detail-page">
-      <header className="hero">
-        <button type="button" className="brand-button" onClick={onBack}>
-          <h1>CookingMama</h1>
-          <p className="eyebrow">Des recettes faciles à cuisiner</p>
-        </button>
-      </header>
+      <SearchHeader
+        search={search}
+        onSearchChange={onSearchChange}
+        onSubmit={onSubmit}
+        onSuggestionSelect={onSuggestionSelect}
+        onReset={onReset}
+      />
 
       <article className="recipe-detail-card">
         <img src={recipe.image_url || FALLBACK_IMAGE} alt={recipe.name} className="detail-image" />

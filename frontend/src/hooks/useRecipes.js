@@ -43,6 +43,9 @@ function useRecipes() {
         return
       }
 
+      setSearch('')
+      setSubmittedSearch('')
+
       const recipeId = Number(match[1])
       setDetailLoading(true)
       fetch(`/api/v1/recipes/${recipeId}`)
@@ -84,6 +87,13 @@ function useRecipes() {
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     setSubmittedSearch(search)
+    window.location.hash = ''
+  }
+
+  const handleSearchSuggestion = (recipeId) => {
+    setSearch('')
+    setSubmittedSearch('')
+    openRecipe(recipeId)
   }
 
   return {
@@ -97,6 +107,7 @@ function useRecipes() {
     openRecipe,
     goBackToList,
     handleSearchSubmit,
+    handleSearchSuggestion,
   }
 }
 

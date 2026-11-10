@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     get "health", to: "health#index"
 
     namespace :v1 do
-      resources :recipes
+      resources :recipes do
+        collection do
+          get :autocomplete
+        end
+      end
     end
   end
 

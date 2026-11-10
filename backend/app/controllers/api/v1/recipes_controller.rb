@@ -11,6 +11,13 @@ module Api
         render json: @recipes
       end
 
+      def autocomplete
+        query = params[:q].presence
+        recipes = query ? Recipe.select(:id, :name, :ingredients).search_by_text(query).order(:name) : []
+
+        render json: recipes.pluck(:id, :name, :ingredients).map { |id, name, ingredients| { id: id, name: name, ingredients: ingredients } }
+      end
+
       # GET /api/v1/recipes/:id
       def show
         render json: @recipe
